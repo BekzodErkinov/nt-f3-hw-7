@@ -3,19 +3,14 @@ const tabBtn = document.querySelectorAll('.tab-btn')
 function inputChangeTab(e) {
   let elInputValue = e.target.value
 
-  switch (elInputValue) {
-    case '1':
-      positiveBtn.click()
-      break
-    case '2':
-      negativeBtn.click()
-      break
-    case '3':
-      neutralBtn.click()
-      break
-    default:
-      alert('Index is invalid')
-  }
+  if (+elInputValue > 0)
+    positiveBtn.click()
+  else if (+elInputValue < 0)
+    negativeBtn.click()
+  else if (+elInputValue === 0)
+    neutralBtn.click()
+  else
+    alert('Index is invalid')
 
   e.target.value = ''
 }
@@ -38,9 +33,6 @@ function changeTabBtn(elBtn) {
       neutralBtn.classList.add('active')
       positiveBtn.classList?.remove('active')
       negativeBtn.classList?.remove('active')
-    default:
-      // elTabBtnId.classList.add('active')
-      console.log('???')
   }
 }
 
@@ -66,7 +58,6 @@ function changeTab(elBtn) {
   changeTabBtn(elBtn)
   changeContent(elBtn)
 }
-
 
 tabBtn.forEach(btn => {
   btn.addEventListener('click', changeTab)
